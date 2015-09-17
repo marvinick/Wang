@@ -9,18 +9,29 @@
 </head>
 <body>
   <div class="container" ng-controller="StudentsCtrl">
+    <div class="row" ng-show="students.length">
+      <div class="col-md-12">
+        <h4>Search Students</h4>
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <input ng-model="query" type="text" class="form-control" id="student-name" placeholder="Search">
+          </div>
+        </form>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-12">
-        <h2>Student List</h2>
+        <h2 ng-show="students.length && filtered.length">Student List</h2>
+        <h2 ng-show="students.length && !filtered.length">No Matches</h2>
         <ul>
-          <li ng-repeat="item in students">
+          <li ng-repeat="item in filtered = (students | filter:query)">
             <span ng-click="editing = true" ng-hide="editing">
               {{item.name}} <a ng-click="deleteStudent(item)">Delete</a>
             </span>
             <span class="form-group" ng-show="editing" ng-submit="editing = false">
               <form class="form-inline" role="form">
                 <input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required/>
-                <button type="btn btn-default btn-sm" type="submit">Save</button>
+                <button type="btn btn-info btn-sm" type="submit">Save</button>
               </form>
             </span>
           </li>
