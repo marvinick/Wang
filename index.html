@@ -1,0 +1,24 @@
+ <!doctype html>
+ <html ng-app="studentRoster">
+ <head>
+  <title>Student App</title>
+  <script src="lib/angular.js"></script>
+  <script src="app.js"></script>
+   <script src="js/StudentsController.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container" ng-controller="StudentsCtrl">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Student List</h2>
+        <ul>
+          <li ng-repeat="item in students">
+            {{item.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
